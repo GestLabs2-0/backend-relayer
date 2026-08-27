@@ -3,6 +3,8 @@
 .env.*
 !.env.example
 
+.codegraph
+
 # Dependencies
 /node_modules
 
@@ -14,3 +16,5 @@
 
 # Test coverage
 /coverage
+# Local Pi runtime state
+.atl/

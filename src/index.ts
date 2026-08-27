@@ -1,12 +1,17 @@
-import express from "express";
+import type { Express } from "express";
 
-const app = express();
-const port = process.env.PORT ?? "3000";
-
-app.get("/", (req, res) => {
-  res.send("Hello World!");
-});
-
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
-});
+async function main() {
+  try {
+    // Importing app dynamically to ensure that all previous async operations are completed
+    // ensuring GlobalRepository singleton is not undefined in other files
+    const imported = await import("./app.js");
+    const app = imported.default as Express;
+    const port: number = app.get("port") as number;
+    app.listen(port, () => {
+      console.log(`Server is running on http://localhost:${port}`);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+void main();
