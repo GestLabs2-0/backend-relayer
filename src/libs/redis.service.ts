@@ -32,8 +32,19 @@ export class RedisService implements RateLimit {
       db,
       host,
       password,
+      tls: {},
+      keepAlive: 10_000,
       port,
       maxRetriesPerRequest: 3,
+      reconnectOnError(err) {
+        return ["EPIPE", "ECONNRESET", "ETIMEDOUT"].some((e) =>
+          err.message.includes(e),
+        );
+      },
+      retryStrategy(times) {
+        if (times > 6) return null;
+        return Math.min(times * 300, 3_000);
+      },
     });
 
     this.client.on("connect", () => {
