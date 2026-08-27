@@ -63,10 +63,12 @@ All useful commands are ready in the `package.json` to automate your workflow:
 | `start`        | Runs the compiled app (`node dist/index.js`).                       |
 | `dev`          | Starts the server in watch mode (`tsx watch src/index.ts`).         |
 | `type-check`   | Runs a check on file types                                          |
-| `lint`         | Runs ESLint to check the code.                                      |
-| `lint:fix`     | Runs ESLint and automatically fixes errors.                         |
-| `format`       | Applies Prettier to the entire project.                             |
-| `format:check` | Applies Prettier to check if is required to format some files.      |
+| `lint`         | Runs Biome to check linting issues.                                 |
+| `lint:fix`     | Runs Biome and automatically fixes lint issues.                     |
+| `format`       | Applies Biome formatting to the entire project.                     |
+| `format:check` | Applies Biome to check formatting.                                  |
+| `check`        | Runs Biome linter, formatter and import organizer.                  |
+| `check:fix`    | Runs Biome and automatically fixes issues.                          |
 | `prepare`      | Husky hook: installs Git hooks.                                     |
 | `test`         | Runs the tests and control vitest from console                      |
 | `test:run`     | Runs all tests inside **tests** folder                              |
@@ -98,7 +100,7 @@ All useful commands are ready in the `package.json` to automate your workflow:
    git add . && git commit -m "your message"
    ```
 
-   Thanks to Husky, ESLint and Prettier run automatically before the commit.
+   Thanks to Husky, Biome runs automatically before the commit.
 
 ---
 
